@@ -137,6 +137,7 @@ void arreglo_enteros_insertar(ArregloEnteros* arreglo, int pos, int dato){
     arreglo->direccion[pos]=dato;
 }
 
+
 void arreglo_enteros_eliminar(ArregloEnteros* arreglo, int pos){
     int capacidad=arreglo_enteros_capacidad(arreglo);
     for(int i=pos;i<capacidad-1;i++){
