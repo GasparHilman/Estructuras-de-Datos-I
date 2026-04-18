@@ -41,4 +41,10 @@ void glist_recorrer(GList lista, FuncionVisitante visitar);
 
 GList glist_filtrar(GList lista, FuncionCopia c, Predicado p);
 
+//Devuelve el dato del primer nodo
+void* glist_dato(GList lista);
+
+//Elimina el primer nodo
+GList glist_eliminar_inicio(GList lista,FuncionDestructora destroy);
+
 #endif /* __GLIST_H__ */

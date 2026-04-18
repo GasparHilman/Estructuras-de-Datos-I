@@ -55,3 +55,14 @@ GList glist_filtrar(GList lista, FuncionCopia c, Predicado p){
   return listaNueva;
 }
 
+void *glist_dato(GList lista){
+  return lista->data;
+}
+
+GList glist_eliminar_inicio(GList lista,FuncionDestructora destroy){
+  if(!lista)
+    return NULL;
+  GList aux = lista->next;
+  destruir(lista);
+  return aux;
+}
