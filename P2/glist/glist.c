@@ -63,6 +63,7 @@ GList glist_eliminar_inicio(GList lista,FuncionDestructora destroy){
   if(!lista)
     return NULL;
   GList aux = lista->next;
-  destruir(lista);
+  destroy(lista->data);
+  free(lista);
   return aux;
 }

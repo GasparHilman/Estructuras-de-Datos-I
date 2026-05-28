@@ -20,7 +20,7 @@ void * pila_tope(Pila p) {
 }
 
 void pila_apilar(Pila *p, void* dato,FuncionCopia copy){
-    *p = glist_agregar_inicio(p,dato,copy);
+    *p = glist_agregar_inicio(*p,dato,copy);
 }
 
 void pila_desapilar(Pila *p, FuncionDestructora fd) {

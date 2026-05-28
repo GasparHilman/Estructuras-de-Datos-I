@@ -9,9 +9,9 @@ void pila_destruir(Pila p, FuncionDestructora fd);
 
 int pila_vacia(Pila p);
 
-int pila_tope(Pila p);
+void* pila_tope(Pila p);
 
-void pila_apilar(Pila p, void* dato,FuncionCopia copy);
+void pila_apilar(Pila *p, void* dato,FuncionCopia copy);
 
 void pila_desapilar(Pila *p, FuncionDestructora fd);
 

@@ -7,7 +7,6 @@ typedef int (*FuncionComparadora)(void *dato1,void *dato2);
 
 typedef GList SGList;
 
-
 SGList sglist_crear();
 
 void sglist_destruir(SGList lista, FuncionDestructora destroy);
