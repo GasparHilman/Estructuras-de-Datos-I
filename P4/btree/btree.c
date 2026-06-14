@@ -204,3 +204,38 @@ void btree_recorrer_bfs(BTree arbol, FuncionVisitante visit){
   }
 }
 
+
+BTree mirror(BTree arbol){
+  if(!arbol)
+    return NULL;
+  return btree_unir(arbol->dato,mirror(arbol->right),mirror(arbol->left));
+
+}
+int btree_es_completo_aux(BTree arbol,int profAct,int profTot,int *flag){
+  if(!arbol && profAct< profTot){
+    return 0;
+  }
+  if(profAct == profTot){
+    if(arbol && *flag){
+      return 0;
+    }
+    if(!arbol){
+      *flag = 1;
+    }
+    return 1;
+  }
+  return btree_es_completo_aux(arbol->left,profAct+1,profTot,flag) && btree_es_completo_aux(arbol->right,profAct+1,profTot,flag);
+  
+}
+
+int btree_es_completo(BTree arbol){
+  if(! arbol) return 1;
+  int x =0,completo=1;
+  int altura = btree_altura(arbol);
+  for(int i=0;i<=altura && completo;i++){
+    x=0;
+    completo = btree_es_completo_aux(arbol,0,i,&x);
+  }
+  return completo;
+}
+

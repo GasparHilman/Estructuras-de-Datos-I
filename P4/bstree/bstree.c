@@ -133,9 +133,9 @@ void * bstree_k_esimo_menor(BSTree arbol, int k){
     }
     int cantIzq = bstree_elementos(arbol->izq);
     if(cantIzq< k-1){
-      bstree_k_esimo_menor(arbol->der,k-cantIzq+1);
+      return bstree_k_esimo_menor(arbol->der,k-cantIzq-1);
     }else if(cantIzq >= k){
-      bstree_k_esimo_menor(arbol->izq,k);
+      return bstree_k_esimo_menor(arbol->izq,k);
     }else{
       return arbol->dato;
     }
@@ -163,4 +163,18 @@ int bstree_validar_aux(BSTree arbol, FuncionComparadora comp, void **ultimo_visi
 int bstree_validar(BSTree arbol,FuncionComparadora comp){
   void *ultimo = NULL;
   return bstree_validar_aux(arbol, comp, &ultimo);
+}
+void * bstree_cota_inferior_aux(BSTree arbol, void *dato,FuncionComparadora comp,void **candidato){
+if(!arbol) return *candidato;
+  if(comp(arbol->dato,dato) <= 0){
+    return bstree_cota_inferior_aux(arbol->der,dato,comp,candidato);
+  }else {
+      *candidato = arbol->dato;
+      return bstree_cota_inferior_aux(arbol->izq,dato,comp,candidato);
+  }
+}
+
+void * bstree_cota_inferior(BSTree arbol, void *dato,FuncionComparadora comp){
+  void * candidato = NULL;
+  return bstree_cota_inferior_aux(arbol,dato,comp,&candidato);
 }
